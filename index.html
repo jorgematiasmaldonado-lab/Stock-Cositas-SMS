@@ -529,11 +529,15 @@ function formProducto(){
         <img src="${FOTOS[id]}" alt="Foto ${i+1}" style="width:96px;height:96px;object-fit:cover;border-radius:12px;display:block;${i===0?'outline:2px solid var(--accent);outline-offset:2px':''}">
         <button data-a="pf-quitar" data-id="${i}" aria-label="Quitar foto ${i+1}" style="position:absolute;top:-8px;right:-8px;width:30px;height:30px;border-radius:15px;border:2px solid var(--surface);background:var(--fg);color:var(--bg);font-weight:700;cursor:pointer;line-height:1">×</button>
         ${i===0?'<span class="muted" style="display:block;font-size:11.5px;text-align:center;margin-top:6px">Principal</span>':`<button data-a="pf-portada" data-id="${i}" style="display:block;width:100%;margin-top:4px;background:none;border:0;color:var(--accent);font-size:11.5px;font-weight:600;cursor:pointer;min-height:24px">Hacer principal</button>`}</div>`).join('')}
-      ${fotos.length<3?`<label for="pf-foto" style="width:96px;height:96px;border:1.5px dashed var(--muted);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer;text-align:center">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Agregar foto</label>
-        <input id="pf-foto" type="file" accept="image/*" multiple style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">`:''}
+      ${fotos.length<3?`<div style="display:flex;flex-direction:column;gap:6px">
+        <label for="pf-cam" style="width:96px;height:45px;border:1.5px dashed var(--muted);border-radius:12px;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>Sacar foto</label>
+        <label for="pf-foto" style="width:96px;height:45px;border:1.5px dashed var(--muted);border-radius:12px;display:flex;align-items:center;justify-content:center;gap:6px;color:var(--accent);font-size:12px;font-weight:600;cursor:pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>Galería</label>
+        <input id="pf-cam" type="file" accept="image/*" capture="environment" style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none">
+        <input id="pf-foto" type="file" accept="image/*" multiple style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none"></div>`:''}
     </div>
-    <p class="muted" style="font-size:12.5px;margin:8px 0 14px">${pf.tipo==='dibujo'?'Opcional. Las fotos se guardan aunque uses el dibujo y se ven al tocar el producto.':'Sacá la foto o elegila de la galería. Se achica sola para no ocupar lugar.'}</p>
+    <p class="muted" style="font-size:12.5px;margin:8px 0 14px">${pf.tipo==='dibujo'?'Opcional. Las fotos se guardan aunque uses el dibujo y se ven al tocar el producto.':'Sacá la foto con la cámara o elegila de la galería. Se achica sola para no ocupar lugar.'}</p>
     <div class="grid grid-cols-2 gap-3">
       <div class="col-span-2"><label class="lbl" for="pf-nombre">Nombre</label><input id="pf-nombre" class="inp" data-pf="nombre" value="${esc(pf.nombre)}" placeholder="Ej: Auriculares inalámbricos"></div>
       <div class="col-span-2"><label class="lbl" for="pf-var">Color / modelo</label><input id="pf-var" class="inp" data-pf="variante" value="${esc(pf.variante)}" placeholder="Ej: Negro, blanco, lila"></div>
@@ -913,7 +917,7 @@ document.addEventListener('change',e=>{
   if(t.dataset.vf==='envio'){vf.envio=t.checked;render();return}
   if(t.dataset.vf==='fiado'||t.dataset.vf==='pago'){vf[t.dataset.vf]=t.type==='checkbox'?t.checked:t.value;return}
   if(pf&&t.id==='pf-mon'){pf.moneda=t.value;$('#pf-costo-lbl').textContent='Costo c/u ('+(t.value==='ARS'?'$':'US$')+')';$('#pf-sug').innerHTML=sugTexto(pf.moneda,numDec(pf.costo));return}
-  if(pf&&t.id==='pf-foto'&&t.files.length){subirFotos([...t.files]);return}
+  if(pf&&(t.id==='pf-foto'||t.id==='pf-cam')&&t.files.length){subirFotos([...t.files]);return}
   if(cajaD&&t.dataset.cj==='moneda'){cajaD.moneda=t.value;render();return}
   if(cajaD&&t.dataset.cl!==undefined&&t.tagName==='SELECT'){cajaD.lineas[+t.dataset.cl].pid=t.value;render();return}
   if(t.id==='a-file'&&t.files[0]){const r=new FileReader();r.onload=()=>restaurar(r.result);r.readAsText(t.files[0])}
