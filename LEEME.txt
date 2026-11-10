@@ -1,0 +1,20 @@
+COSITAS TECNO & DECO · CAJA Y STOCK
+Desarrollado por Jorge Matías Maldonado · JMM Gestiones & Tecnología · Soporte: 3541 633175
+
+CÓMO PUBLICARLA (una sola vez)
+1. Entrá a https://app.netlify.com/drop
+2. Arrastrá esta carpeta completa (cositas-app) a la página.
+3. Netlify te da un link https://... Ese es el link de la app.
+   (Creando una cuenta gratis podés ponerle un nombre, por ejemplo cositas-tecno.netlify.app)
+
+CÓMO INSTALARLA
+- iPhone / iPad: abrir el link en Safari › Compartir › "Agregar a inicio".
+- Android: abrir el link en Chrome › menú ⋮ › "Instalar app".
+- Notebook / PC: abrir el link en Chrome o Edge › ícono de instalar en la barra de direcciones.
+También está el botón "Instalar" dentro de la app, en Más › Ajustes.
+
+PARA ACTUALIZARLA
+Volvé a subir la carpeta al mismo sitio de Netlify. La app toma la versión nueva la próxima vez que se abre con internet.
+
+IMPORTANTE
+Los datos y fotos quedan guardados en cada dispositivo por separado. Hacer la copia de seguridad semanal desde Ajustes.
